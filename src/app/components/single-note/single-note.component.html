@@ -8,6 +8,7 @@
         formControlName="title"
         class="input-title-box"
         [placeholder]="titleHolder"
+        [(ngModel)]="titleVal"
       />
     </div>
     <div class="note-contianer">
@@ -15,17 +16,19 @@
         id="note"
         [formControl]="note"
         name="note"
-        id=""
         cols="30"
         rows="10"
         class="input-note-box"
         [placeholder]="noteHolder"
+        [(ngModel)]="noteVal"
       ></textarea>
     </div>
     <div class="btns">
-        <button type="submit">
+        <button id="submit" type="submit">
             Post
         </button>
+        <button type="button" *ngIf="noteSelected" (click)="revert()">Revert</button>
+        <button type="reset" *ngIf="noteSelected" (click)="clearInputs()">New Post</button>
     </div>
   </form>
 </div>

@@ -16,14 +16,10 @@ export class ApiService {
   private noteListSubject$ = new BehaviorSubject(this.noteList);
   notes$ = this.noteListSubject$.asObservable();
 
-// $ Selected Note 
+  // $ Selected Note
   private selectedNote!: Note;
   private selectedNoteSubject$ = new BehaviorSubject(this.selectedNote);
   selectedNote$ = this.selectedNoteSubject$.asObservable();
-
-  // private allLocal!: any[];
-  // private allLocalSubject$ = new BehaviorSubject(this.allLocal);
-  // allLocal$ = this.noteListSubject$.asObservable();
 
   getAllNotes() {
     return this.http.get([this.baseUrl, 'notes'].join('/')).pipe(
@@ -37,49 +33,44 @@ export class ApiService {
     );
   }
 
-  //   allStorage() {
-  //     //localStorage.setItem('first', "HELLOO");
-  //     localStorage.removeItem('first');
-  //     let values = [],
-  //         keys = Object.keys(localStorage),
-  //         i = keys.length;
-
-  //     while ( i-- ) {
-  //         values.push( localStorage.getItem(keys[i]) );
-  //     }
-
-  //     this.allLocal = values;
-  //     console.log("VALUES: ", values);
-  //     return this.allLocalSubject$.next(this.allLocal);
-  // }
-
   postNote(newnote: any) {
+    console.log('POSTING: ', newnote);
     return this.http.post([this.baseUrl, 'notes'].join('/'), newnote).pipe(
-      map((res)=> {
-        console.log("NEW POST: ", res);
+      map((res) => {
+        console.log('NEW POST: ', res);
 
         this.noteList.push(res);
 
         this.noteListSubject$.next(this.noteList);
-
       })
-    ) 
+    );
   }
 
-  deleteNote(id: number){
-    return this.http.delete([this.baseUrl, "notes", id].join("/")).pipe(
-      map((res)=>{
-        console.log("DEL: ", res);
+  updateNote(data: any, id: number) {
+    return this.http.put([this.baseUrl, 'notes', id].join('/'), data).pipe(
+      map((res) => {
+        console.log('UPDATED?: ', res);
 
         this.getAllNotes().subscribe();
       })
-    )
+    );
   }
 
-  setSelectedNote(id: number){
-    this.selectedNote = this.noteList.find(note => note.id === id);
-    console.log("Selected: ", this.selectedNote);
+  deleteNote(id: number) {
+    return this.http.delete([this.baseUrl, 'notes', id].join('/')).pipe(
+      map((res) => {
+        console.log('DEL: ', res);
 
-    this.selectedNoteSubject$.next(this.selectedNote)
+        this.getAllNotes().subscribe();
+      })
+    );
   }
+
+  setSelectedNote(id: number) {
+    this.selectedNote = this.noteList.find((note) => note.id === id);
+    console.log('Selected: ', this.selectedNote);
+
+    this.selectedNoteSubject$.next(this.selectedNote);
+  }
+
 }

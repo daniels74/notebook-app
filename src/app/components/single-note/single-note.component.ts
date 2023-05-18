@@ -12,24 +12,36 @@ export class SingleNoteComponent {
   form: FormGroup;
   titleHolder!: string;
   noteHolder!: string;
+  id!: number;
+
+  titleVal!: string;
+  noteVal!: string;
+  idVal!: number;
+
+  noteSelected: boolean = false;
 
   constructor(public fb: FormBuilder, public api: ApiService) {
+    this.api.selectedNote$.subscribe((note) => {
+      console.log('SIngle Note: ', note);
+      if (note) {
+        this.titleHolder = note.title;
+        this.noteHolder = note.note;
+        this.id = note.id;
+        this.noteSelected = true;
+
+        this.titleVal = note.title;
+        this.noteVal = note.note;
+        this.idVal = note.id;
+      } else {
+        this.titleHolder = 'Enter Title';
+        this.noteHolder = 'Enter Note';
+      }
+    });
+
     this.form = this.fb.group({
       title: new FormControl(''),
       note: new FormControl(''),
-    })
-
-    this.api.selectedNote$.subscribe((note)=>{
-      console.log("SIngle Note: ", note);
-      if(this.noteHolder){
-        this.titleHolder = note.title;
-        this.noteHolder = note.note;
-      } else {
-        this.titleHolder = "Enter Title";
-        this.noteHolder = "Enter Note";
-      }
-      
-    })
+    });
   }
 
   // $ FUNCTIONS
@@ -41,10 +53,44 @@ export class SingleNoteComponent {
     return this.form.get('note') as FormControl;
   }
 
+  revert() {
+    this.api.selectedNote$.subscribe((note) => {
+      console.log('SIngle Note: ', note);
+      if (note) {
+        this.titleHolder = note.title;
+        this.noteHolder = note.note;
+        this.id = note.id;
+        this.noteSelected = true;
+
+        this.titleVal = note.title;
+        this.noteVal = note.note;
+        this.idVal = note.id;
+      }
+    });
+  }
+
+  clearInputs() {
+    // this.noteHolder = "";
+    this.form.reset('title');
+    this.form.reset('note');
+
+    this.titleHolder = 'Enter Title';
+    this.noteHolder = 'Enter Note';
+
+    this.noteSelected = false;
+  }
 
   onSubmit(data: any) {
-    console.log(data);
+    if (this.noteSelected) {
+      data = {
+        id: this.id,
+        title: data.title,
+        note: data.note,
+      };
 
-    this.api.postNote(data).subscribe();
+      this.api.updateNote(data, this.id).subscribe();
+    } else {
+      this.api.postNote(data).subscribe();
+    }
   }
 }

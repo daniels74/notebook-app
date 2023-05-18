@@ -1,9 +1,14 @@
 {
   "NOTES": [
     {
-      "title": "Example 1",
-      "note": "Hello and goodnight",
-      "id": 1
+      "id": 1,
+      "title": "Helloppp",
+      "note": "Hellooooof"
+    },
+    {
+      "title": "Hello there 2",
+      "note": "Nighttime",
+      "id": 2
     }
   ],
   "HISTORY": []
