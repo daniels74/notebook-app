@@ -56,7 +56,7 @@ export class SingleNoteComponent {
 
   revert() {
     this.api.selectedNote$.subscribe((note) => {
-      console.log('SIngle Note: ', note);
+      console.log('Reverting: ', note);
       if (note) {
         this.titleHolder = note.title;
         this.noteHolder = note.note;
@@ -71,10 +71,11 @@ export class SingleNoteComponent {
   }
 
   clearInputs() {
-    // this.noteHolder = "";
+    // Reset(Blank) form values
     this.form.reset('title');
     this.form.reset('note');
 
+    // Set placeholders for new note
     this.titleHolder = 'Enter Title';
     this.noteHolder = 'Enter Note';
 
@@ -93,6 +94,8 @@ export class SingleNoteComponent {
     } else {
       this.api.postNote(data).subscribe();
     }
+
+    this.clearInputs();
   }
 
   toggleDisable() {

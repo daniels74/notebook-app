@@ -4,18 +4,21 @@
   </div>
   <ul class="note-list">
     <li *ngFor="let note of notes$ | async" class="note" (click)="selectNote(note.id)">
-      <div class="note-contents">
-        <div class="note-title">
-          {{ note.title }}
+      <div class="content-wrap">
+        <div class="note-contents">
+          <div class="note-title">
+            {{ note.title }}
+          </div>
+  
+          <div class="note-description">
+            {{ note.note }}
+          </div>
         </div>
-
-        <div class="note-description">
-          {{ note.note }}
+        <div class="btns">
+          <button class="del-btn" (click)="deleteNote(note.id)">DEL</button>
         </div>
       </div>
-      <div class="btns">
-        <button (click)="deleteNote(note.id)">DEL</button>
-      </div>
+      <div class="line"></div>
     </li>
   </ul>
 </div>

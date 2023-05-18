@@ -1,51 +1,75 @@
-<div class="single-note-container">
-  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" action="">
-    <div class="title-contianer">
-      <input
-        name="title"
-        id="title"
-        [formControl]="title"
-        type="text"
-        formControlName="title"
-        class="input-title-box"
-        [placeholder]="titleHolder"
-        [(ngModel)]="titleVal"
-        (click)="toggleDisable()"
-      />
-    </div>
-    <div class="note-contianer">
-      <textarea
-        id="note"
-        [formControl]="note"
-        name="note"
-        cols="30"
-        rows="10"
-        class="input-note-box"
-        [placeholder]="noteHolder"
-        [(ngModel)]="noteVal"
-        (click)="toggleDisable()"
-      ></textarea>
-    </div>
-    <div class="btns">
-      <button id="submit" type="submit" [disabled]="isDisabled">Post</button>
-      <button
-        type="button"
-        *ngIf="noteSelected"
-        (click)="revert()"
-        [disabled]="isDisabled"
-        (click)="toggleDisable()"
-      >
-        Revert
-      </button>
-      <button
-        type="reset"
-        *ngIf="noteSelected"
-        (click)="clearInputs()"
-        [disabled]="isDisabled"
-        (click)="toggleDisable()"
-      >
-        New Post
-      </button>
-    </div>
-  </form>
-</div>
+<form
+  class="single-note-container"
+  [formGroup]="form"
+  (ngSubmit)="onSubmit(form.value)"
+  action=""
+>
+  <div class="title-contianer">
+    <input
+      name="title"
+      id="title"
+      [formControl]="title"
+      type="text"
+      formControlName="title"
+      class="input-title-box"
+      [placeholder]="titleHolder"
+      [(ngModel)]="titleVal"
+      (click)="toggleDisable()"
+    />
+  </div>
+  <div class="note-contianer">
+    <textarea
+      id="note"
+      [formControl]="note"
+      name="note"
+      cols="30"
+      rows="10"
+      class="input-note-box"
+      [placeholder]="noteHolder"
+      [(ngModel)]="noteVal"
+      (click)="toggleDisable()"
+    ></textarea>
+  </div>
+  <div class="btns">
+    <button
+      [ngClass]="{
+        'submit-btn': !isDisabled,
+        'standard-btn': isDisabled,
+        'btn-size': true
+      }"
+      id="submit"
+      type="submit"
+      [disabled]="isDisabled"
+    >
+      Post
+    </button>
+    <button
+      [ngClass]="{
+        'revert-btn': !isDisabled,
+        'standard-btn': isDisabled,
+        'btn-size': true
+      }"
+      type="button"
+      *ngIf="noteSelected"
+      (click)="revert()"
+      [disabled]="isDisabled"
+      (click)="toggleDisable()"
+    >
+      Revert
+    </button>
+    <button
+      [ngClass]="{
+        'new-btn': !isDisabled,
+        'standard-btn': isDisabled,
+        'btn-size': true
+      }"
+      type="reset"
+      *ngIf="noteSelected"
+      (click)="clearInputs()"
+      [disabled]="isDisabled"
+      (click)="toggleDisable()"
+    >
+      New Post
+    </button>
+  </div>
+</form>

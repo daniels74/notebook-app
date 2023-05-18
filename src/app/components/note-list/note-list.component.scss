@@ -1,69 +1,108 @@
 .note-list-container {
-    height: 100%;
-    width: 100%;
+  height: 100%;
+  width: 100%;
 
-    // background-color: rgb(3, 35, 3);
+  // background-color: rgb(3, 35, 3);
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .list-title {
-    height: 10%;
-    // background-color: blue;
+  height: 10%;
+  // background-color: blue;
 }
 
 .note-list {
-    height: 80%;
-    // background-color: blue;
-    width: 100%;
+  height: 80%;
+  // background-color: blue;
+  width: 100%;
 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .note {
-    height: 5rem;
-    width: 100%;
+  height: 7rem;
+  width: 100%;
 
-    // background-color: violet;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+
+  //border-bottom: 1px solid #00ffff;
+}
+
+.content-wrap {
+  height: 98%;
+  width: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.line {
+  height: 2%;
+  width: 100%;
+  box-shadow: 0px 1px 10px 2px #00ffff;
 }
 
 .note-contents {
-    height: 100%;
-    width: 80%;
+  height: 100%;
+  width: 80%;
 
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
-
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .note-title {
-    height: 100%;
-    min-width: 15%; 
+  height: 100%;
+  min-width: 15%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .note-description {
-    height: 100%;
-    min-width: 60%;
-    width: auto;
+  height: 100%;
+  min-width: 60%;
+  width: auto;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .btns {
-    height: 100%;
-    width: 20%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+  height: 100%;
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.del-btn {
+    height: 40%;
+    width: 50%;
+
+    background-color: rgb(138, 73, 73);
+
+    border-radius: 1rem;
+    border-width: thin;
+    border-color: #ff0000;
+
+    box-shadow: 1px 1px 10px 2px #ff0000;
 }
