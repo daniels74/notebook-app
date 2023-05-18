@@ -1,0 +1,31 @@
+<div class="single-note-container">
+  <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" action="">
+    <div class="title-contianer">
+      <input
+        id="title"
+        [formControl]="title"
+        type="text"
+        formControlName="title"
+        class="input-title-box"
+        [placeholder]="titleHolder"
+      />
+    </div>
+    <div class="note-contianer">
+      <textarea
+        id="note"
+        [formControl]="note"
+        name="note"
+        id=""
+        cols="30"
+        rows="10"
+        class="input-note-box"
+        [placeholder]="noteHolder"
+      ></textarea>
+    </div>
+    <div class="btns">
+        <button type="submit">
+            Post
+        </button>
+    </div>
+  </form>
+</div>

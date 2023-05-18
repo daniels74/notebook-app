@@ -1,0 +1,69 @@
+.note-list-container {
+    height: 100%;
+    width: 100%;
+
+    // background-color: rgb(3, 35, 3);
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.list-title {
+    height: 10%;
+    // background-color: blue;
+}
+
+.note-list {
+    height: 80%;
+    // background-color: blue;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.note {
+    height: 5rem;
+    width: 100%;
+
+    // background-color: violet;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.note-contents {
+    height: 100%;
+    width: 80%;
+
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+
+}
+
+.note-title {
+    height: 100%;
+    min-width: 15%; 
+}
+
+.note-description {
+    height: 100%;
+    min-width: 60%;
+    width: auto;
+}
+
+.btns {
+    height: 100%;
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}

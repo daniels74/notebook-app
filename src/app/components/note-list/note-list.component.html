@@ -1,0 +1,21 @@
+<div class="note-list-container">
+  <div class="list-title">
+    <h1>Note List</h1>
+  </div>
+  <ul class="note-list">
+    <li *ngFor="let note of notes$ | async" class="note" (click)="selectNote(note.id)">
+      <div class="note-contents">
+        <div class="note-title">
+          {{ note.title }}
+        </div>
+
+        <div class="note-description">
+          {{ note.note }}
+        </div>
+      </div>
+      <div class="btns">
+        <button (click)="deleteNote(note.id)">DEL</button>
+      </div>
+    </li>
+  </ul>
+</div>
