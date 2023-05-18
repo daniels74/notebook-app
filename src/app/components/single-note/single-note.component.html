@@ -2,6 +2,7 @@
   <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" action="">
     <div class="title-contianer">
       <input
+        name="title"
         id="title"
         [formControl]="title"
         type="text"
@@ -9,6 +10,7 @@
         class="input-title-box"
         [placeholder]="titleHolder"
         [(ngModel)]="titleVal"
+        (click)="toggleDisable()"
       />
     </div>
     <div class="note-contianer">
@@ -21,14 +23,29 @@
         class="input-note-box"
         [placeholder]="noteHolder"
         [(ngModel)]="noteVal"
+        (click)="toggleDisable()"
       ></textarea>
     </div>
     <div class="btns">
-        <button id="submit" type="submit">
-            Post
-        </button>
-        <button type="button" *ngIf="noteSelected" (click)="revert()">Revert</button>
-        <button type="reset" *ngIf="noteSelected" (click)="clearInputs()">New Post</button>
+      <button id="submit" type="submit" [disabled]="isDisabled">Post</button>
+      <button
+        type="button"
+        *ngIf="noteSelected"
+        (click)="revert()"
+        [disabled]="isDisabled"
+        (click)="toggleDisable()"
+      >
+        Revert
+      </button>
+      <button
+        type="reset"
+        *ngIf="noteSelected"
+        (click)="clearInputs()"
+        [disabled]="isDisabled"
+        (click)="toggleDisable()"
+      >
+        New Post
+      </button>
     </div>
   </form>
 </div>

@@ -19,6 +19,7 @@ export class SingleNoteComponent {
   idVal!: number;
 
   noteSelected: boolean = false;
+  isDisabled: boolean = true;
 
   constructor(public fb: FormBuilder, public api: ApiService) {
     this.api.selectedNote$.subscribe((note) => {
@@ -92,5 +93,9 @@ export class SingleNoteComponent {
     } else {
       this.api.postNote(data).subscribe();
     }
+  }
+
+  toggleDisable() {
+    this.isDisabled = !this.isDisabled;
   }
 }
